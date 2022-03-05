@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 class Node {
@@ -26,11 +28,13 @@ public class BinaryTree {
         System.out.println("PostOrder traversal: ");
         bt.postOrder(root);
         System.out.println();
+        System.out.println("LevelOrder traversal: ");
+        bt.levelOrder(root);
+        System.out.println();
         System.out.println("Height of the tree: " + bt.height(root));
         System.out.println("Maximum: " + bt.maximum(root));
         System.out.println("Minimum: " + bt.minimum(root));
-        bt.levelOrder(root);
-        System.out.println();
+
     }
 
     public Node createTree() {
@@ -76,6 +80,16 @@ public class BinaryTree {
         System.out.print(root.data + " ");
     }
 
+    /*
+     // time complexity for this approach -> O(n^2)
+    public void levelOrder(Node root) {
+        if(root == null) return;
+
+        for(int i = 0;  i <= height(root); i++) {
+            printCurrentLevel(root, i);
+        }
+    } 
+
     // function to print each level
     private void printCurrentLevel(Node root, int level) {
         if(root == null) return;
@@ -88,14 +102,37 @@ public class BinaryTree {
             printCurrentLevel(root.right, level-1);
         }
     }
+    */
 
-
-    // time complexity for this approach -> O(n^2)
+    // this approach takes linear time - O(n)
     public void levelOrder(Node root) {
         if(root == null) return;
 
-        for(int i = 0;  i <= height(root); i++) {
-            printCurrentLevel(root, i);
+        Queue<Node> q = new LinkedList<>();
+        q.offer(root);
+        q.offer(null); // for printing each level in a new line
+        
+        while(!q.isEmpty()) {
+            Node curr = q.poll();
+
+            //for printing each level in a new line
+            if(curr == null) {
+                if(q.isEmpty()) return;
+
+                q.offer(null);
+                System.out.println();
+                continue;
+            }
+
+            System.out.print(curr.data + " ");
+
+            if(curr.left != null) {
+                q.offer(curr.left);
+            }
+
+            if(curr.right != null) {
+                q.offer(curr.right);
+            }
         }
     }
 
