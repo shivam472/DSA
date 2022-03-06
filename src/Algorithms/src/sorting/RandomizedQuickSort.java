@@ -31,8 +31,8 @@ public class RandomizedQuickSort {
         int j = h;
 
         while(i < j) {
-            while(a[i] <= pivot) i++;
-            while(a[j] > pivot) j--;
+            while(a[i] <= pivot && i <= h-1) i++;
+            while(a[j] > pivot && j >= l) j--;
 
             if(i < j) {
                 int temp = a[i];
@@ -52,11 +52,11 @@ public class RandomizedQuickSort {
     // space complexity (worst case) -> O(logn)
     // l -> low
     // h -> high
-    public static void QuickSort(int a[], int l, int h) {
+    public static void quickSort(int a[], int l, int h) {
         if(l < h) {
             int j = partition(a, l, h); // returns the partitioning position
-            QuickSort(a, l, j);
-            QuickSort(a, j+1, h);
+            quickSort(a, l, j-1);
+            quickSort(a, j+1, h);
         }
     }
 
@@ -66,7 +66,7 @@ public class RandomizedQuickSort {
         // To randomly shuffle the array to achieve best case complexity
         shuffle(arr);
 
-        QuickSort(arr, 0, arr.length-1);
+        quickSort(arr, 0, arr.length-1);
 
         System.out.println("Sorted array: ");
         for(int x : arr) {
