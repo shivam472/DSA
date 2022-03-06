@@ -49,6 +49,7 @@ public class RandomizedQuickSort {
     }
 
     // time complexity (worst case) -> O(nlogn)
+    // space complexity (worst case) -> O(logn)
     // l -> low
     // h -> high
     public static void QuickSort(int a[], int l, int h) {

@@ -27,6 +27,8 @@ public class QuickSortRunner {
 
     // time complexity (best case) -> O(nlogn)
     // time complexity (worst case) -> O(n^2) -> if the array is already sorted
+    // space complexity (best case) -> O(logn)
+    // space complexity (worst case) -> O(n^2) -> if the array is already sorted
     public static void QuickSort(int a[], int l, int h) {
         if(l < h) {
             int j = partition(a, l, h); // returns the partitioning position
