@@ -226,7 +226,7 @@ public class BinaryTree {
     private void printLeftViewUtil(Node root, ArrayList<Node> list, int level) {
         if(root == null) return;
 
-        // if list size is equat to 0 that means no item has been
+        // if list size is equal to 0 that means no item has been
         // inserted into the list
         if(list.size() == level) {
             list.add(root);
