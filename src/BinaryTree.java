@@ -137,6 +137,7 @@ public class BinaryTree {
         }
     }
 
+    // level order search -> more efficient
     public void search(Node root) {
         System.out.println("Enter the element which you want to search for: ");
         int ele = sc.nextInt();
@@ -170,6 +171,10 @@ public class BinaryTree {
     }
 
     // height of a binary tree
+    // find the height of the left subtree
+    // find the height of the right subtree
+    // find the maximum of both
+    // add 1 to get the height of the whole tree
     public int height(Node root) {
         if(root == null) return 0;
 
@@ -177,6 +182,9 @@ public class BinaryTree {
     }
 
     // size of a binary tree -> total number of nodes
+    // find the size of the left subtree
+    // find the size of the right subtree
+    // add 1 to it to get the size of the whole tree
     public int size(Node root) {
         if(root == null) return 0;
         
