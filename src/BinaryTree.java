@@ -13,6 +13,7 @@ class Node {
     }
 }
 
+// using linked list
 public class BinaryTree {
     Scanner sc = new Scanner(System.in);
 

@@ -61,7 +61,8 @@ public class RandomizedQuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {10, 16, 8, 12, 15, 6, 3, 9, 5};
+        // int[] arr = {10, 16, 8, 12, 15, 6, 3, 9, 5};
+        int[] arr = {7, 10, 4, 3, 20, 15};
         
         // To randomly shuffle the array to achieve best case complexity
         shuffle(arr);
@@ -72,6 +73,5 @@ public class RandomizedQuickSort {
         for(int x : arr) {
             System.out.print(x + " ");
         }
-
     }
 }
