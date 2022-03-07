@@ -35,7 +35,7 @@ public class BinaryTree {
         System.out.println("Height of the tree: " + bt.height(root));
         System.out.println("Maximum: " + bt.maximum(root));
         System.out.println("Minimum: " + bt.minimum(root));
-
+        bt.search(root);
     }
 
     public Node createTree() {
@@ -135,6 +135,38 @@ public class BinaryTree {
                 q.offer(curr.right);
             }
         }
+    }
+
+    public void search(Node root) {
+        System.out.println("Enter the element which you want to search for: ");
+        int ele = sc.nextInt();
+
+        if(root == null) {
+            System.out.println("Element not found");
+            return;
+        }
+
+        Queue<Node> q = new LinkedList<>();
+
+        q.add(root);
+
+        while(!q.isEmpty()) {
+            Node curr = q.poll();
+
+            if(curr.data == ele) {
+                System.out.println("Element found");
+                return;
+            }
+
+            if(curr.left != null) {
+                q.add(curr.left);
+            }
+            if(curr.right != null) {
+                q.add(curr.right);
+            }
+        }
+        System.out.println("Element not found");
+        return;
     }
 
     // height of a binary tree
