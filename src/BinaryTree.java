@@ -38,6 +38,7 @@ public class BinaryTree {
         System.out.println("Minimum: " + bt.minimum(root));
         bt.search(root);
         bt.printLeftView(root);
+        bt.printRightView(root);
     }
 
     public Node createTree() {
@@ -225,12 +226,14 @@ public class BinaryTree {
     private void printLeftViewUtil(Node root, ArrayList<Node> list, int level) {
         if(root == null) return;
 
-        // if no element is inserted in the list
+        // if list size is equat to 0 that means no item has been
+        // inserted into the list
         if(list.size() == level) {
             list.add(root);
         }
+
         // add the node to the array if and only if
-        // the array at that level is null
+        // the array at that level(index) is null
         if(list.get(level) == null) {
             list.add(root);
         }
@@ -242,6 +245,45 @@ public class BinaryTree {
         printLeftViewUtil(root.left, list, level+1);
 
         printLeftViewUtil(root.right, list, level+1);
+    }
+
+    // right view of a binary tree
+    // time complexity -> O(n)
+    public void printRightView(Node root) {
+        // take an array
+        ArrayList<Node> list = new ArrayList<>();
+
+        printRightViewUtil(root, list, 0);
+
+        System.out.println("Right view of a binary tree: ");
+        for(Node curr : list) {
+            System.out.print(curr.data + " ");
+        }
+        System.out.println();
+    }
+
+    private void printRightViewUtil(Node root, ArrayList<Node> list, int level) {
+        if(root == null) return;
+
+        // if list size is equat to 0 that means no item has been
+        // inserted into the list
+        if(list.size() == level) {
+            list.add(root);
+        }
+
+        // add the node to the list if and only if
+        // the array at that level(index) is null
+        if(list.get(level) == null) {
+            list.add(root);
+        }
+
+        // if the array at the next level is null and
+        // the root has a right child then
+        // the right child will be added first
+        // so that we can get the right view 
+        printRightViewUtil(root.right, list, level+1);
+
+        printRightViewUtil(root.left, list, level+1);
     }
     
 }
