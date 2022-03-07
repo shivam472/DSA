@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -36,6 +37,7 @@ public class BinaryTree {
         System.out.println("Maximum: " + bt.maximum(root));
         System.out.println("Minimum: " + bt.minimum(root));
         bt.search(root);
+        bt.printLeftView(root);
     }
 
     public Node createTree() {
@@ -203,6 +205,43 @@ public class BinaryTree {
         if(root == null) return Integer.MAX_VALUE;
 
         return Math.min(root.data, Math.min(minimum(root.left), minimum(root.right)));
+    }
+
+    // left view of a binary tree
+    // time complexity -> O(n)
+    public void printLeftView(Node root) {
+        // take an array
+        ArrayList<Node> list = new ArrayList<>();
+
+        printLeftViewUtil(root, list, 0);
+
+        System.out.println("Left view of Binary tree: ");
+        for(Node curr : list) {
+            System.out.print(curr.data + " ");
+        }
+        System.out.println();
+    }
+
+    private void printLeftViewUtil(Node root, ArrayList<Node> list, int level) {
+        if(root == null) return;
+
+        // if no element is inserted in the list
+        if(list.size() == level) {
+            list.add(root);
+        }
+        // add the node to the array if and only if
+        // the array at that level is null
+        if(list.get(level) == null) {
+            list.add(root);
+        }
+
+        // if the array at the next level is null and
+        // the root has a left child then
+        // the left child will be added first
+        // so that we can get the left view 
+        printLeftViewUtil(root.left, list, level+1);
+
+        printLeftViewUtil(root.right, list, level+1);
     }
     
 }
