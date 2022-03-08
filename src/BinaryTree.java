@@ -290,6 +290,13 @@ public class BinaryTree {
         printRightViewUtil(root.left, list, level+1);
     }
 
+    // a binary search tree is a binary tree in which all the elements in the
+    // left subtree is smaller than the root and all the elements in the
+    // right subtree is greater than the root
+    // and this goes for every node in the true.
+    // time complexity -> O(n)
+    // space complexity -> O(h) -> because of the recursion stack
+    // where 'h' is the height of the tree
     private Node prev = null;
     public Boolean isBST(Node node) {
         // we know that the inorder traversal of a bst gives a sorted list
@@ -299,7 +306,7 @@ public class BinaryTree {
             if(!isBST(node.left))
                 return false;
             
-            // if the current element is less than the previous element
+            // if the current element is less than or equal to the previous element
             // then it is not a binary tree
             if(prev != null && node.data <= prev.data)
                 return false;
