@@ -89,7 +89,63 @@ public class BinarySearchTree {
 
         System.out.println("key: " + key + " not found");
     }
+
+    public Node deleteNode(Node root, int key) {
+        if(root == null) {
+            return null;
+        }
+
+        // if key is in the left side of the tree
+        // repeat the process for the left side of the tree
+        // find the key, delete it and return the root of the modified subtree
+        if(key < root.data) {
+            root.left = deleteNode(root.left, key);
+        }
+
+        // if key is in the right side of the tree
+        // repeat the process for the right side of the tree
+        // find the key, delete it and return the root of the modified subtree
+        else if(key > root.data) {
+            root.right = deleteNode(root.right, key);
+        }
+
+        // if the current node has the key
+        else {
+            System.out.println(root.data + " deleted from the tree");
+
+            // if the current node has no left child then return the right child
+            if(root.left == null) {
+                return root.right;
+            }
+            // else if the current node has no right child then return the left child
+            else if(root.right == null) {
+                return root.left;
+            }
+
+            // if the current node has both a left and a right child then
+            // find the minimum value from the right subtree
+            // replace the current node with the minimum value
+            // delete the minimum value node in the right subtree
+            else {
+                root.data = findMinValue(root.right);
+                root.right = deleteNode(root.right, root.data);
+            }
+        }
+
+        return root;
+    }
     
+    public int findMinValue(Node root) {
+        Node curr = root;
+
+        // the minimum value is always present at the leaf node of the left subtree.
+        while(curr.left != null) {
+            curr = curr.left;
+        }
+
+        return curr.data; 
+    }
+
     // this approach takes linear time - O(n)
     public void levelOrder(Node root) {
         if(root == null) return;
@@ -137,5 +193,7 @@ public class BinarySearchTree {
         System.out.println();
         bst.search(root, 13);
         bst.search(root, 20);
+        bst.deleteNode(root, 3);
+        bst.levelOrder(root);
     }
 }
