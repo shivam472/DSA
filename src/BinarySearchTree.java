@@ -1,6 +1,7 @@
 import java.util.Queue;
 import java.util.LinkedList;
 
+/*
 class Node {
     int data;
     Node left;
@@ -10,6 +11,7 @@ class Node {
         this.data = data;
     }
 }
+*/
 
 public class BinarySearchTree {
 
@@ -66,6 +68,27 @@ public class BinarySearchTree {
         
         return root;
     }
+
+    public void search(Node root, int key) {
+        if(root == null) {
+            System.out.println("key: " + key + " not found");
+            return;
+        }
+
+        Node curr = root;
+        while(curr != null) {
+            if(key == curr.data) {
+                System.out.println("key: " + key + " found");
+                return;
+            }
+            else if(key < curr.data) 
+                curr = curr.left;
+            else
+                curr = curr.right;
+        }
+
+        System.out.println("key: " + key + " not found");
+    }
     
     // this approach takes linear time - O(n)
     public void levelOrder(Node root) {
@@ -111,5 +134,8 @@ public class BinarySearchTree {
         bst.insert(root, 7);
         bst.insert(root, 13);
         bst.levelOrder(root);
+        System.out.println();
+        bst.search(root, 13);
+        bst.search(root, 20);
     }
 }
