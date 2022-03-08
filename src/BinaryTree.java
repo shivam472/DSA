@@ -39,6 +39,10 @@ public class BinaryTree {
         bt.search(root);
         bt.printLeftView(root);
         bt.printRightView(root);
+        if(bt.isBST(root))
+            System.out.println("the tree is a BST");
+        else
+            System.out.println("Not a BST");
     }
 
     public Node createTree() {
@@ -285,5 +289,27 @@ public class BinaryTree {
 
         printRightViewUtil(root.left, list, level+1);
     }
-    
+
+    private Node prev = null;
+    public Boolean isBST(Node node) {
+        // we know that the inorder traversal of a bst gives a sorted list
+        // so we can do the inorder traversal and check if the current element
+        // is greater than the previous element or not.
+        if(node != null) {
+            if(!isBST(node.left))
+                return false;
+            
+            // if the current element is less than the previous element
+            // then it is not a binary tree
+            if(prev != null && node.data <= prev.data)
+                return false;
+            
+            prev = node;
+
+            if(!isBST(node.right))
+                return false;
+        }
+        
+        return true;
+    }
 }
