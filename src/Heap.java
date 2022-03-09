@@ -66,15 +66,19 @@ public class Heap {
                 greaterChildIndex = leftChildIndex;
             }
             else {
+                // compare the left child and the right child and find the greater key
                 greaterChildIndex = a.get((2*i) + 1) > a.get((2*i) + 2) ? (2*i) + 1 : (2*i) + 2;
             }
             
-            
+            // compare the current key with the greater key
+            // if the current key is smaller than the greater key 
+            // then swap the current key and the greater key
             if(a.get(i) < a.get(greaterChildIndex)) {
                 swap(a, i, greaterChildIndex);
                 i = greaterChildIndex;
             }
 
+            // else the key is at the right places
             else{
                 break;
             }
