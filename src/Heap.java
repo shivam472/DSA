@@ -34,6 +34,7 @@ public class Heap {
         }
     }
 
+    // time complexity -> O(log n)
     public void insert(ArrayList<Integer> a, int element) {
         // add the new element to the end of the array
         a.add(element);
@@ -86,6 +87,7 @@ public class Heap {
         }
     }
 
+    // time complexity -> O(log n)
     // we delete the root node from the heap
     public void delete(ArrayList<Integer> a) {
         // get the last element from the array
