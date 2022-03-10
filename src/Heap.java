@@ -79,7 +79,7 @@ public class Heap {
                 i = greaterChildIndex;
             }
 
-            // else the key is at the right places
+            // else the key is at the right place
             else{
                 break;
             }
@@ -116,7 +116,7 @@ public class Heap {
         h.insert(a, 10);
         h.insert(a, 5);
         h.insert(a, 20);
-        h.insert(a, 30);
+        h.insert(a, 25);
 
         h.printHeap(a);
 
