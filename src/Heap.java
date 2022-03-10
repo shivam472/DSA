@@ -68,7 +68,7 @@ public class Heap {
             }
             else {
                 // compare the left child and the right child and find the greater key
-                greaterChildIndex = a.get((2*i) + 1) > a.get((2*i) + 2) ? (2*i) + 1 : (2*i) + 2;
+                greaterChildIndex = a.get(leftChildIndex) > a.get(rightChildIndex) ? leftChildIndex : rightChildIndex;
             }
             
             // compare the current key with the greater key
