@@ -2,6 +2,7 @@ package Algorithms.src;
 
 // Java program to build a heap from a given array
 public class Heapify {
+    
     public static void heapify(int[] a, int n, int i) {
         int largest = i; // Initialize the root as largest
         int lChild = (2 * i) + 1;
@@ -28,6 +29,7 @@ public class Heapify {
         }
     }
 
+    // time complexity -> O(n)
     // Function to build a Max-Heap from the Array
     public static void buildHeap(int[] a, int n) {
         // Index of last non-leaf node
