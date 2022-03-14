@@ -294,17 +294,18 @@ public class BinaryTree {
         printRightViewUtil(root.left, list, level+1);
     }
 
+    // To print the top view we have to do the level order traversal
     public void printTopView(Node root) {
         if(root == null) {
             return;
         }
+
         Map<Integer, Integer> map = new TreeMap<>();
 
         // the queue will hold the horizontal distance(from the root) and the node
         Queue<Pair> q = new ArrayDeque<>();
+
         q.offer(new Pair(0, root));
-    
-        // To print the top view we have to do the level order traversal
         while(!q.isEmpty()) {
             Pair curr = q.poll();
             if(!map.containsKey(curr.hd)) {
