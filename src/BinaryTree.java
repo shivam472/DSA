@@ -1,7 +1,10 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 class Node {
     int data;
@@ -39,6 +42,7 @@ public class BinaryTree {
         bt.search(root);
         bt.printLeftView(root);
         bt.printRightView(root);
+        bt.printTopView(root);
         if(bt.isBST(root))
             System.out.println("the tree is a BST");
         else
@@ -290,6 +294,42 @@ public class BinaryTree {
         printRightViewUtil(root.left, list, level+1);
     }
 
+    public void printTopView(Node root) {
+        if(root == null) {
+            return;
+        }
+        Map<Integer, Integer> map = new TreeMap<>();
+
+        // the queue will hold the horizontal distance(from the root) and the node
+        Queue<Pair> q = new ArrayDeque<>();
+        q.offer(new Pair(0, root));
+    
+        // To print the top view we have to do the level order traversal
+        while(!q.isEmpty()) {
+            Pair curr = q.poll();
+            if(!map.containsKey(curr.hd)) {
+                map.put(curr.hd, curr.node.data);
+            }
+
+            // left children of the node will be 1 less from the parent node
+            if(curr.node.left != null) {
+                q.offer(new Pair(curr.hd-1, curr.node.left));
+            }
+
+            // right chilren of the node will be 1 greater than the parent node
+            if(curr.node.right != null) {
+                q.offer(new Pair(curr.hd+1, curr.node.right));
+            }
+        }
+
+        // since it is a tree map elements will come out in sorted order
+        System.out.println("Top View of the Binary tree: ");
+        for(Integer value : map.values()) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
+    }
+
     // a binary search tree is a binary tree in which all the elements in the
     // left subtree is smaller than the root and all the elements in the
     // right subtree is greater than the root
@@ -318,5 +358,14 @@ public class BinaryTree {
         }
         
         return true;
+    }
+}
+
+class Pair {
+    int hd; // horizontal distance
+    Node node;
+    Pair(int hd, Node node) {
+        this.hd = hd;
+        this.node = node;
     }
 }
