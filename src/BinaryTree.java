@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -43,6 +44,7 @@ public class BinaryTree {
         bt.printLeftView(root);
         bt.printRightView(root);
         bt.printTopView(root);
+        bt.printBottomView(root);
         if(bt.isBST(root))
             System.out.println("the tree is a BST");
         else
@@ -323,8 +325,37 @@ public class BinaryTree {
             }
         }
 
-        // since it is a tree map elements will come out in sorted order
+        // since it is a tree map the keys will be sorted
+        // so we will be getting output from the lefmost node
         System.out.println("Top View of the Binary tree: ");
+        for(Integer value : map.values()) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
+    }
+
+    public void printBottomView(Node root) {
+        if(root == null) {
+            return;
+        }
+
+        Map<Integer, Integer> map = new HashMap<>();
+        Queue<Pair> q = new ArrayDeque<>();
+
+        q.offer(new Pair(0, root));
+        while(!q.isEmpty()) { 
+            Pair curr = q.poll();
+            map.put(curr.hd, curr.node.data);
+
+            if(curr.node.left != null) {
+                q.offer(new Pair(curr.hd-1, curr.node.left));
+            }
+            if(curr.node.right != null) {
+                q.offer(new Pair(curr.hd+1, curr.node.right));
+            }
+        }
+
+        System.out.println("Bottom view of the Binary tree: ");
         for(Integer value : map.values()) {
             System.out.print(value + " ");
         }
