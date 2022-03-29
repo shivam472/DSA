@@ -4,14 +4,14 @@ public class MergeSort {
 
     public static void merge(int[] a, int l, int mid, int r) {
         int i = l;
-        int j = mid;
+        int j = mid + 1;
 
         // create a temporary array
         int[] temp = new int[a.length];
         int k = l;
 
-        while(i <= mid-1 && j <= r) {
-            if(a[i] <= a[j]) {
+        while(i <= mid && j <= r) {
+            if(a[i] < a[j]) {
                 temp[k] = a[i];
                 i++;
             }
@@ -23,17 +23,21 @@ public class MergeSort {
         }
 
         // Copy remaining elements of right subarray if any
-        while(i <= mid-1) {
-            temp[k] = a[i];
-            i++;
-            k++;
+        if(i > mid) {
+            while(j <= r) {
+                temp[k] = a[j];
+                j++;
+                k++;
+            }
         }
 
         // Copy remaining elements of left subarray if any
-        while(j <= r) {
-            temp[k] = a[j];
-            j++;
-            k++;
+        else {
+            while(i <= mid) {
+                temp[k] = a[i];
+                i++;
+                k++;
+            }
         }
 
         // copy the temporary elements to the original array
@@ -60,7 +64,10 @@ public class MergeSort {
     }
     public static void main(String[] args) {
         //int[] arr = {9, 4, 7, 6, 3, 1, 5};
-        int[] arr = {2, 4, 1, 3, 5};
+        int[] arr = {468, 335, 1, 170, 225, 479, 359, 463, 465, 206, 146, 282, 328, 462, 492,
+            496, 443, 328, 437, 392, 105, 403, 154, 293, 383, 422, 217, 219, 396, 448, 227, 272, 
+            39, 370, 413, 168, 300, 36, 395, 204, 312, 323};
+            
         mergeSort(arr, 0, arr.length-1);
 
         for(int x : arr) {
