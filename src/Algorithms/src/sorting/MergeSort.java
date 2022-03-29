@@ -11,7 +11,7 @@ public class MergeSort {
         int k = l;
 
         while(i <= mid && j <= r) {
-            if(a[i] < a[j]) {
+            if(a[i] <= a[j]) {
                 temp[k] = a[i];
                 i++;
             }
@@ -63,7 +63,8 @@ public class MergeSort {
         } 
     }
     public static void main(String[] args) {
-        int[] arr = {9, 4, 7, 6, 3, 1, 5};
+        //int[] arr = {9, 4, 7, 6, 3, 1, 5};
+        int[] arr = {2, 4, 1, 3, 5};
         mergeSort(arr, 0, arr.length-1);
 
         for(int x : arr) {
