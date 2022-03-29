@@ -22,22 +22,18 @@ public class MergeSort {
             k++;
         }
 
-        // Copy remaining elements of right subarray if any
-        if(i > mid) {
-            while(j <= r) {
-                temp[k] = a[j];
-                j++;
-                k++;
-            }
+         // Copy remaining elements of right subarray if any
+         while(i <= mid) {
+            temp[k] = a[i];
+            i++;
+            k++;
         }
-
+        
         // Copy remaining elements of left subarray if any
-        else {
-            while(i <= mid) {
-                temp[k] = a[i];
-                i++;
-                k++;
-            }
+        while(j <= r) {
+            temp[k] = a[j];
+            j++;
+            k++;
         }
 
         // copy the temporary elements to the original array
@@ -67,7 +63,7 @@ public class MergeSort {
         int[] arr = {468, 335, 1, 170, 225, 479, 359, 463, 465, 206, 146, 282, 328, 462, 492,
             496, 443, 328, 437, 392, 105, 403, 154, 293, 383, 422, 217, 219, 396, 448, 227, 272, 
             39, 370, 413, 168, 300, 36, 395, 204, 312, 323};
-            
+
         mergeSort(arr, 0, arr.length-1);
 
         for(int x : arr) {
