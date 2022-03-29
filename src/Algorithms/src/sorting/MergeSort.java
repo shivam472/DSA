@@ -4,13 +4,13 @@ public class MergeSort {
 
     public static void merge(int[] a, int l, int mid, int r) {
         int i = l;
-        int j = mid + 1;
+        int j = mid;
 
         // create a temporary array
         int[] temp = new int[a.length];
         int k = l;
 
-        while(i <= mid && j <= r) {
+        while(i <= mid-1 && j <= r) {
             if(a[i] <= a[j]) {
                 temp[k] = a[i];
                 i++;
@@ -23,21 +23,17 @@ public class MergeSort {
         }
 
         // Copy remaining elements of right subarray if any
-        if(i > mid) {
-            while(j <= r) {
-                temp[k] = a[j];
-                j++;
-                k++;
-            }
+        while(i <= mid-1) {
+            temp[k] = a[i];
+            i++;
+            k++;
         }
 
         // Copy remaining elements of left subarray if any
-        else {
-            while(i <= mid) {
-                temp[k] = a[i];
-                i++;
-                k++;
-            }
+        while(j <= r) {
+            temp[k] = a[j];
+            j++;
+            k++;
         }
 
         // copy the temporary elements to the original array
